@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Details | Forex Alchemist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header class="header-animate">
+        <div class="container">
+            <h1><a href="index.html" class="logo">Forex Alchemist</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="payment-details-section">
+        <div class="container">
+            <h2 class="section-title">Complete Your Payment</h2>
+            
+            <div class="payment-tabs" role="tablist">
+                <button class="payment-tab active" 
+                        onclick="showPaymentMethod('bank')"
+                        role="tab"
+                        aria-selected="true"
+                        aria-controls="bank-method">
+                    <i class="fas fa-university" aria-hidden="true"></i> Naira Transfer
+                </button>
+                <button class="payment-tab" 
+                        onclick="showPaymentMethod('crypto')"
+                        role="tab"
+                        aria-selected="false"
+                        aria-controls="crypto-method">
+                    <i class="fab fa-bitcoin" aria-hidden="true"></i> Crypto (BTC/USDT)
+                </button>
+                <button class="payment-tab" 
+                        onclick="showPaymentMethod('eth')"
+                        role="tab"
+                        aria-selected="false"
+                        aria-controls="eth-method">
+                    <i class="fab fa-ethereum" aria-hidden="true"></i> Ethereum
+                </button>
+            </div>
+            
+            <div id="payment-details" class="payment-details">
+                <!-- Naira Transfer (OPay) -->
+                <div class="payment-method active-method" id="bank-method" role="tabpanel">
+                    <h3><i class="fas fa-university" aria-hidden="true"></i> Naira Bank Transfer (OPay)</h3>
+                    <div class="payment-details">
+                        <div class="detail-row">
+                            <span class="detail-label">Bank Name:</span>
+                            <span class="detail-value">OPay</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Account Number:</span>
+                            <span class="detail-value">9022552471</span>
+                            <button class="copy-btn" onclick="copyToClipboard('9022552471', event)">
+                                 <i class="fas fa-copy" aria-hidden="true"></i> Copy
+                            </button>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Account Name:</span>
+                            <span class="detail-value">Destiny Aituagboghiomwan</span>
+                            <button class="copy-btn" onclick="copyToClipboard('Destiny Aituagboghiomwan', event)">
+                                <i class="fas fa-copy" aria-hidden="true"></i> Copy
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="amount-display">
+                        <div class="currency-amount">
+                            <span class="currency">USD:</span>
+                            <span class="amount">$<span id="usd-amount">9.99</span></span>
+                        </div>
+                        <div class="conversion-rate">
+                            <span>1 USD ≈ ₦1,440</span>
+                            <i class="fas fa-exchange-alt" aria-hidden="true"></i>
+                        </div>
+                        <div class="currency-amount">
+                            <span class="currency">NGN:</span>
+                            <span class="amount">₦<span id="naira-amount">15,280</span></span>
+                        </div>
+                    </div>
+
+                    <div class="payment-instructions">
+                        <h4><i class="fas fa-info-circle" aria-hidden="true"></i> Instructions:</h4>
+                        <ol>
+                            <li>Transfer <strong>exactly ₦<span id="naira-instruction">15,280</span></strong> to the account above</li>
+                            <li>Use your <strong>full name</strong> as payment reference</li>
+                            <li>Send payment proof to <a href="mailto:detea5050@gmail.com">detea5050@gmail.com</a></li>
+                            <li>You will receive a confirmation <strong>Email</strong> shortly after</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Crypto (BTC/USDT) -->
+                <div class="payment-method" id="crypto-method" role="tabpanel" hidden>
+                    <h3><i class="fab fa-bitcoin" aria-hidden="true"></i> Crypto Payment (BTC/USDT)</h3>
+                    <div class="payment-details">
+                        <div class="detail-row">
+                            <span class="detail-label">Wallet Address:</span>
+                            <span class="detail-value crypto-address">bc1qq5r8plutef5yx7c2zmesv0t6nqa5vzgq235k8f</span>
+                            <button class="copy-btn" onclick="copyToClipboard('bc1qq5r8plutef5yx7c2zmesv0t6nqa5vzgq235k8f', event)" aria-label="Copy BTC wallet address">
+                                <i class="fas fa-copy" aria-hidden="true"></i> Copy
+                            </button>
+                        </div>
+                        <div class="qr-code-container">
+                            <img src="Btc.image.jpeg" alt="BTC Wallet QR Code for receiving payments" class="qr-code">
+                            <p class="qr-note">Scan QR code to send BTC</p>
+                        </div>
+                    </div>
+
+                    <div class="amount-display crypto-amount">
+                        <div class="currency-amount">
+                            <span class="currency">Amount:</span>
+                            <span class="amount">$<span id="btc-usd-amount">9.99</span> USD</span>
+                        </div>
+                        <div class="currency-amount">
+                            <span class="currency">BTC Amount:</span>
+                            <span class="amount"><span id="btc-amount">0.00034</span> BTC</span>
+                        </div>
+                        <div class="currency-amount">
+                            <span class="currency">Current Rate:</span>
+                            <span class="amount">1 BTC ≈ $<span id="btc-rate">29,500</span></span>
+                        </div>
+                    </div>
+
+                    <div class="payment-instructions">
+                        <h4><i class="fas fa-info-circle" aria-hidden="true"></i> Instructions:</h4>
+                        <ol>
+                            <li>Send <strong><span id="btc-amount-instruction">0.00034</span> BTC</strong> ($<span id="btc-usd-instruction">9.99</span>) to the wallet above</li>
+                            <li>Use the <strong>BTC network</strong> for transfer</li>
+                            <li>Include your <strong>email address</strong> in transaction notes</li>
+                            <li>Send transaction hash to <a href="mailto:detea5050@gmail.com">detea5050@gmail.com</a></li>
+                            <li>Network confirmations may take <strong>10-30 minutes</strong></li>
+                            <li>You will receive confirmation <strong>email</strong> within 1 hour</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Ethereum -->
+                <div class="payment-method" id="eth-method" role="tabpanel" hidden>
+                    <h3><i class="fab fa-ethereum" aria-hidden="true"></i> Ethereum (ETH) Payment</h3>
+                    <div class="payment-details">
+                        <div class="detail-row">
+                            <span class="detail-label">Wallet Address:</span>
+                            <span class="detail-value crypto-address">0x70fF44BB08020A164B74D8D235a32Ba08D87812b</span>
+                            <button class="copy-btn" onclick="copyToClipboard('0x70fF44BB08020A164B74D8D235a32Ba08D87812b', event)" aria-label="Copy ETH wallet address">
+                                <i class="fas fa-copy" aria-hidden="true"></i> Copy
+                            </button>
+                        </div>
+                        <div class="qr-code-container">
+                            <img src="Eth.image.jpeg" alt="ETH Wallet QR Code for receiving payments" class="qr-code">
+                            <p class="qr-note">Scan QR code to send ETH</p>
+                        </div>
+                    </div>
+
+                    <div class="amount-display crypto-amount">
+                        <div class="currency-amount">
+                            <span class="currency">Amount:</span>
+                            <span class="amount">$<span id="eth-usd-amount">9.99</span> USD</span>
+                        </div>
+                        <div class="currency-amount">
+                            <span class="currency">ETH Amount:</span>
+                            <span class="amount"><span id="eth-amount">0.0054</span> ETH</span>
+                        </div>
+                        <div class="currency-amount">
+                            <span class="currency">Current Rate:</span>
+                            <span class="amount">1 ETH ≈ $<span id="eth-rate">1,850</span></span>
+                        </div>
+                    </div>
+
+                    <div class="payment-instructions">
+                        <h4><i class="fas fa-info-circle" aria-hidden="true"></i> Instructions:</h4>
+                        <ol>
+                            <li>Send <strong><span id="eth-amount-instruction">0.0054</span> ETH</strong> ($<span id="eth-usd-instruction">$9.99</span>) to the wallet above</li>
+                            <li>Use the <strong>ERC-20</strong> network for transfer</li>
+                            <li>Include your <strong>email address</strong> in transaction notes</li>
+                            <li>Send transaction hash to <a href="mailto:detea5050@gmail.com">detea5050@gmail.com</a></li>
+                            <li>Network confirmations typically take <strong>3-15 minutes</strong></li>
+                            <li>You will receive confirmation <strong>email</strong> within 1 hour</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="payment-confirmation">
+                <button onclick="handlePaymentConfirmation()" class="confirm-button pulse">
+                    <span id="confirm-text">I've Made the Payment</span>
+                    <span id="loading-spinner" class="loading-spinner" hidden>
+                        <i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Processing...
+                    </span>
+                </button>
+                <p class="security-note">
+                    <i class="fas fa-lock" aria-hidden="true"></i> Secure payment processing
+                </p>
+            </div>
+        </div>
+    </section>
+    <script src="script.js"></script>
+</body>
+</html>
